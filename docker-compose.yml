@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  hann.application.cargomanager.api:
+    image: ${DOCKER_REGISTRY-}hannapplicationcargomanagerapi
+    build:
+      context: .
+      dockerfile: Hann.Application.CargoManager.Api/Dockerfile
+  cargoManagerdb:
+    container_name: cargoManagerdb
+    image: "mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-18.04"

@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  cargoManagerdb:
+    container_name: cargoManagerdb
+    ports:
+      - "14331:1433"
+    environment:
+      SA_PASSWORD: "P@ssw0rd1"
+      ACCEPT_EULA: "Y"
+  hann.application.cargomanager.api:
+    container_name: hahn-application-cargomanager-api
+    restart: on-failure
+    image: hahncargomanagerapi-v1
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DBHOST=cargoManagerdb
+      - 'ConnectionStrings:CargoRequestConnectionString=server=cargoManagerdb;uid=SA;pwd=P@ssw0rd1;Database=cargoManagementDb'
+    depends_on: 
+    - cargoManagerdb
+    ports:
+      - "8080:80"
+      - "9080:443"

@@ -1,0 +1,13 @@
+bin
+obj
+packages
+Hann.Application.CargoManager.Api/bin
+Hann.Application.CargoManager.Api/obj
+Hann.Application.CargoManager.Application/bin
+Hann.Application.CargoManager.Application/obj
+Hann.Application.CargoManager.Domain/bin
+Hann.Application.CargoManager.Domain/obj
+Hann.Application.CargoManager.Infrastructure/bin
+Hann.Application.CargoManager.Infrastructure/obj
+Hann.Application.CargoManager.Persistence/bin
+Hann.Application.CargoManager.Persistence/obj
