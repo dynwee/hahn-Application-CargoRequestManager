@@ -1,0 +1,75 @@
+<mat-toolbar class="page-header mat-elevation-z10">
+  <div class="container">
+    <h1>Add New Terminal</h1>
+  </div>
+</mat-toolbar>
+
+<div class="container" color="primary">
+  <div class="row top-row">
+    <div class="col-xs-12 row end-xs">
+        <a routerLink="/terminal" color="primary" mat-raised-button>
+          <mat-icon>chevron_left</mat-icon>
+          Go Back
+        </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <form #cargorequestDetailForm="ngForm" class="example-form">
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Terminal Name</mat-label>
+              <input type="text" matInput [(ngModel)] ="terminalModel.terminalName" name="terminalName" required>
+              <mat-error>Terminal Name is required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Email Address</mat-label>
+              <input type="email" matInput [(ngModel)] ="terminalModel.emailAddress" name="emailAddress" required>
+              <mat-error>Email Address is required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Contact No</mat-label>
+              <input type="text" matInput [(ngModel)] ="terminalModel.terminalContactNo" name="terminalContactNo" required>
+              <mat-error>Contact No is required</mat-error>
+            </mat-form-field>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Website Address</mat-label>
+              <input type="text" matInput [(ngModel)] ="terminalModel.websiteAddress" name="websiteAddress">
+            </mat-form-field>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Address</mat-label>
+              <textarea matInput [(ngModel)] ="terminalModel.terminalAddress" name="terminalAddress"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 row end-xs">
+            <button mat-raised-button color="primary" (click)="onAdd()">Add</button>
+          </div>
+        </div>
+        <br>
+      </form>
+
+    </div>
+  </div>
+</div>

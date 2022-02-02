@@ -1,0 +1,69 @@
+<mat-toolbar color="primary" class="mat-elevation-z10">
+  <div class="container">
+    <h1>Terminal Table</h1>
+  </div>
+</mat-toolbar>
+
+
+<div class="container">
+  <div class="row end-xs mt-1">
+    <div class="col-xs-6">
+      <input type="text" class="search-input" placeholder="search for terminals"
+      [(ngModel)] ="filterString" (keyup)="filterterminal()"
+      >
+      <a routerLink="/addterminal" mat-raised-button color="primary" class="ml-1">Add new Terminal</a>
+    </div>
+
+  </div>
+
+  <div class="mt-1 mat-elevation-z10">
+    <table mat-table matSort [dataSource]="dataSource" class="">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- customerName Column -->
+      <ng-container matColumnDef="terminalName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Terminal Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.terminalName}} </td>
+      </ng-container>
+
+      <!-- PhoneNumber Column -->
+      <ng-container matColumnDef="terminalContactNo">
+        <th mat-header-cell *matHeaderCellDef> Contact No </th>
+        <td mat-cell *matCellDef="let element"> {{element.terminalContactNo}} </td>
+      </ng-container>
+
+      <!-- emailAddress Column -->
+      <ng-container matColumnDef="emailAddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
+      </ng-container>
+
+       <!-- status Column -->
+       <ng-container matColumnDef="isActive">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> isActive </th>
+        <td mat-cell *matCellDef="let element"> {{element.isActive}} </td>
+      </ng-container>
+      <!-- view Column -->
+      <ng-container matColumnDef="view">
+        <th mat-header-cell *matHeaderCellDef>View</th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/viewterminal',element.id]">
+            <mat-icon color="primary">description</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+</mat-paginator>
+
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<mat-toolbar class="page-header mat-elevation-z10">
+  <div class="container">
+    <h1>Add New Vehicle</h1>
+  </div>
+</mat-toolbar>
+
+<div class="container" color="primary">
+  <div class="row top-row">
+    <div class="col-xs-12 row end-xs">
+        <a routerLink="/terminal" color="primary" mat-raised-button>
+          <mat-icon>chevron_left</mat-icon>
+          Go Back
+        </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <form #vehicleTypeForm="ngForm" class="example-form">
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Vehicle Name</mat-label>
+              <input type="text" matInput [(ngModel)] ="addVehicleTypeModel.vehicleTypeName" name="vehicleTypeName" required>
+              <mat-error>Vehicle Name is required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 row end-xs">
+            <button mat-raised-button color="primary" (click)="onAdd()">Add</button>
+          </div>
+        </div>
+        <br>
+      </form>
+
+    </div>
+  </div>
+</div>

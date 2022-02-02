@@ -1,0 +1,120 @@
+<mat-toolbar color="primary" class="mat-elevation-z10">
+  <div class="container">
+    <h1>Cargo Request Table</h1>
+  </div>
+</mat-toolbar>
+
+
+<div class="container">
+  <div class="row end-xs mt-1">
+    <div class="col-xs-6">
+      <input type="text" class="search-input" placeholder="search for customers"
+      [(ngModel)] ="filterString" (keyup)="filtercargorequest()"
+      >
+      <a routerLink="/addcargorequest" mat-raised-button color="primary" class="ml-1">Add new Request</a>
+    </div>
+
+  </div>
+
+  <div class="mt-1 mat-elevation-z10">
+    <table mat-table matSort [dataSource]="dataSource" class="">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- customerName Column -->
+      <ng-container matColumnDef="customerName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+      </ng-container>
+
+      <!-- PhoneNumber Column -->
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef> PhoneNumber </th>
+        <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+      </ng-container>
+
+      <!-- emailAddress Column -->
+      <ng-container matColumnDef="emailAddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
+      </ng-container>
+
+      <!-- estimatedWeight Column -->
+      <ng-container matColumnDef="estimatedWeight">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Estimated Weight </th>
+        <td mat-cell *matCellDef="let element"> {{element.estimatedWeight}} </td>
+      </ng-container>
+
+      <!-- deliveryDate Column -->
+      <ng-container matColumnDef="deliveryDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Delivery Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.deliveryDate | date:'dd-MM-yyyy'}} </td>
+      </ng-container>
+
+       <!-- status Column -->
+       <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+      <!-- view Column -->
+      <ng-container matColumnDef="view">
+        <th mat-header-cell *matHeaderCellDef>View</th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/viewcargorequest',element.id]">
+            <mat-icon color="primary">description</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- edit Column -->
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngIf="element.status === 'Pending'">
+          <a [routerLink]="['/cargorequest',element.id]">
+            <mat-icon color="primary">edit</mat-icon>
+          </a>
+        </div>
+        </td>
+      </ng-container>
+
+      <!-- delete Column -->
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngIf="element.status === 'Pending'">
+          <a [routerLink]="['/deletecargorequest',element.id]">
+            <mat-icon color="primary">delete</mat-icon>
+          </a>
+        </div>
+        </td>
+      </ng-container>
+
+       <!-- Approve Column -->
+
+       <ng-container matColumnDef="approve">
+        <th mat-header-cell *matHeaderCellDef>Approve</th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngIf="element.status === 'Allocated' || element.status === 'Delivery' || element.status === 'Reviewed' || element.status === 'Pending'">
+            <button mat-raised-button (click)="openDialog(element.id)">
+              <mat-icon color="accent">verified_user</mat-icon>
+            </button>
+        </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+</mat-paginator>
+
+  </div>
+</div>

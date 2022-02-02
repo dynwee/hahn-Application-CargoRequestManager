@@ -1,4 +1,5 @@
 using Hann.Application.CargoManager.Persistence;
+using Hann.Application.CargoManager.Persistence.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,23 +23,17 @@ namespace Hann.Application.CargoManager.Api
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                int retryforAvailability = 0;
-                while (retryforAvailability < 3)
+                try
                 {
-                    Thread.Sleep(5000);
-                    try
-                    {
-                        var db = scope.ServiceProvider.GetRequiredService<CargoRequestManagerDbContext>();
-                        await db.Database.MigrateAsync();
-                        Console.WriteLine($"Sucessfully database migration");
-                        retryforAvailability = 4;
-                    }
-                    catch (Exception ex)
-                    {
-                        retryforAvailability++;
-                        Console.WriteLine($"error on migration:{ex.Message}");
-                    }
+                    var dbContext = services.GetRequiredService<CargoRequestManagerDbContext>();
+
+                    await CargoRequestDbContextSeed.SeedAsync(dbContext);
                 }
+                catch(Exception ex)
+                {
+                    Console.WriteLine($"error on migration from program.cs :{ex.Message}");
+                }
+               
             }
 
             host.Run();

@@ -1,0 +1,53 @@
+<mat-toolbar class="page-header mat-elevation-z10">
+  <div class="container">
+    <h1>Vehicle Details</h1>
+  </div>
+</mat-toolbar>
+
+<div class="container" color="primary">
+  <div class="row top-row">
+    <div class="col-xs-12 row end-xs">
+        <a routerLink="/vehicletype" color="primary" mat-raised-button>
+          <mat-icon>chevron_left</mat-icon>
+          Go Back
+        </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <form #cargorequestDetailForm="ngForm" class="example-form">
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>vehicle Name</mat-label>
+              <input type="text" matInput [(ngModel)] ="vehicleTypeModel.vehicleTypeName" name="vehicleTypeName" required>
+              <mat-error>vehicle Name is required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <h3 class="text-color">Is Active</h3>
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)] ="vehicleTypeModel.isActive" name="isActive">
+              <mat-button-toggle value="1">true</mat-button-toggle>
+              <mat-button-toggle value="0">false</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-6">
+            <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+          </div>
+          <div class="col-xs-6 row end-xs">
+            <button mat-raised-button color="warn" (click)="onDelete()">Delete</button>
+          </div>
+
+        </div>
+        <br>
+      </form>
+
+    </div>
+  </div>
+</div>

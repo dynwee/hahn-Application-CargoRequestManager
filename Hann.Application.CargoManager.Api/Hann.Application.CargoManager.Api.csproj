@@ -53,4 +53,8 @@
     <ProjectReference Include="..\Hann.Application.CargoManager.Persistence\Hann.Application.CargoManager.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\src\" />
+  </ItemGroup>
+
 </Project>

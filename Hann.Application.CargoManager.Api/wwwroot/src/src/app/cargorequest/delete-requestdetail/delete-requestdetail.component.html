@@ -1,0 +1,120 @@
+<mat-toolbar class="page-header mat-elevation-z10">
+  <div class="container">
+    <h1>View Request Details</h1>
+  </div>
+</mat-toolbar>
+
+<div class="container" color="primary">
+  <div class="row top-row">
+    <div class="col-xs-12 row end-xs">
+        <a routerLink="/cargorequest" color="primary" mat-raised-button>
+          <mat-icon>chevron_left</mat-icon>
+          Go Back
+        </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <form #cargorequestDetailForm="ngForm" class="example-form">
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Customer Name</mat-label>
+              <input type="text" matInput [(ngModel)] ="cargorequestdetails.customerName" name="customerName">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Phone No</mat-label>
+              <input type="text" matInput [(ngModel)] ="cargorequestdetails.phoneNumber" name="phoneNumber">
+            </mat-form-field>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Email Address</mat-label>
+              <input type="email" matInput [(ngModel)] ="cargorequestdetails.emailAddress" name="emailAddress">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Estimated Weight</mat-label>
+              <input type="text" matInput [(ngModel)] ="cargorequestdetails.estimatedWeight" name="estimatedWeight">
+            </mat-form-field>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Drop Off Terminal</mat-label>
+              <input type="text" matInput [(ngModel)] ="cargorequestdetails.dropOffTerminal.terminalName" name="dropOffTerminalName">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Drop Off Date</mat-label>
+              <input matInput [matDatepicker]="picker" [(ngModel)] ="cargorequestdetails.dropOffDate" name="dropOffDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Delivery Terminal</mat-label>
+              <input type="text" matInput [(ngModel)] ="cargorequestdetails.deliveryTerminal.terminalName" name="deliveryTerminalName">
+            </mat-form-field>
+          </div>
+
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Delivery Date</mat-label>
+              <input matInput [matDatepicker]="picker1" [(ngModel)] ="cargorequestdetails.deliveryDate" name="deliveryDate">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Item Description</mat-label>
+              <textarea matInput [(ngModel)] ="cargorequestdetails.itemDescription" name="itemDescription"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-6">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Summary</mat-label>
+              <textarea matInput [(ngModel)] ="cargorequestdetails.itemSummary" name="itemSummary"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Status</mat-label>
+              <input matInput type="text"  [(ngModel)] ="cargorequestdetails.status" name="status">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 row end-xs">
+            <button mat-raised-button color="secondary" (click)="onDelete()">Delete Request</button>
+          </div>
+        </div>
+        <br>
+      </form>
+
+    </div>
+  </div>
+</div>

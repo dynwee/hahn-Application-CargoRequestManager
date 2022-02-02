@@ -1,0 +1,56 @@
+<mat-toolbar color="primary" class="mat-elevation-z10">
+  <div class="container">
+    <h1>Vehicle Table</h1>
+  </div>
+</mat-toolbar>
+
+<div class="container">
+  <div class="row end-xs mt-1">
+    <div class="col-xs-6">
+      <input type="text" class="search-input" placeholder="search for terminals"
+      [(ngModel)] ="filterString" (keyup)="filtervehicletype()"
+      >
+      <a routerLink="/addvehicletype" mat-raised-button color="primary" class="ml-1">Add new Vehicle</a>
+    </div>
+
+  </div>
+
+  <div class="mt-1 mat-elevation-z10">
+    <table mat-table matSort [dataSource]="dataSource" class="">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- vehicleTypeName Column -->
+      <ng-container matColumnDef="vehicleTypeName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vehicle Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.vehicleTypeName}} </td>
+      </ng-container>
+
+       <!-- status Column -->
+       <ng-container matColumnDef="isActive">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Is Active </th>
+        <td mat-cell *matCellDef="let element"> {{element.isActive}} </td>
+      </ng-container>
+      <!-- view Column -->
+      <ng-container matColumnDef="view">
+        <th mat-header-cell *matHeaderCellDef>View</th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/viewvehicletype',element.id]">
+            <mat-icon color="primary">description</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+</mat-paginator>
+
+  </div>
+</div>
